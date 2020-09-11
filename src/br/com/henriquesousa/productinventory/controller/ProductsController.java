@@ -9,11 +9,11 @@ import javax.servlet.annotation.WebServlet;
 public class ProductsController extends HttpServlet {
 
   public void doGet(HttpServletRequest request, HttpServletResponse response)
-     throws ServletException, IOException {
-     
-     response.setContentType("text/html");
+    throws ServletException, IOException {
+    
+    response.setContentType("text/html");
 
-     PrintWriter out = response.getWriter();
-     out.println("<h1> Product list placholder </h1>");
+    PrintWriter out = response.getWriter();
+    out.println("<h1> Product list placholder </h1>");
   }
 }
