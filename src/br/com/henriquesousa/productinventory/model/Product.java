@@ -18,7 +18,9 @@ public class Product {
     try {
       Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost/productinventory", "productmanager", "123456");
       Statement statement = connection.createStatement();
-      statement.executeUpdate("INSERT INTO products(name, description, price, quantity) values('" + this.name + "', '" + this.description + "'," + this.price + "," + this.quantity + ");");
+      String query = "INSERT INTO products(name, description, price, quantity)" +
+                     "values('" + this.name + "', '" + this.description + "'," + this.price + "," + this.quantity + ");";
+      statement.executeUpdate(query);
       connection.close();
     } catch(SQLException e) { 
       e.printStackTrace();
