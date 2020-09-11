@@ -1,5 +1,7 @@
 package br.com.henriquesousa.productinventory.model;
 
+import java.sql.*;
+
 public class Product {
   String name, description, id;
   double price;
@@ -11,6 +13,18 @@ public class Product {
     this.price = price;
     this.quantity = quantity;
   }
+
+  public void save() throws SQLException {
+    try {
+      Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost/productinventory", "productmanager", "123456");
+      Statement statement = connection.createStatement();
+      statement.executeUpdate("INSERT INTO products(name, description, price, quantity) values('" + this.name + "', '" + this.description + "'," + this.price + "," + this.quantity + ");");
+      connection.close();
+    } catch(SQLException e) { 
+      e.printStackTrace();
+    }
+  }
+
   public String getName() {
     return this.name;
   }
@@ -20,7 +34,7 @@ public class Product {
   public String getDescription() {
     return this.description;
   }
-  public void setDescription(String name) {
+  public void setDescription(String description) {
     this.description = description;
   }
   public double getPrice() {
