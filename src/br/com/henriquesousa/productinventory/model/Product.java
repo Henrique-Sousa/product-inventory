@@ -3,9 +3,9 @@ package br.com.henriquesousa.productinventory.model;
 import java.sql.*;
 
 public class Product {
-  String name, description, id;
+  String name, description;
   double price;
-  long quantity;
+  long quantity, id;
  
   public Product(String name, String description, double price, long quantity) {
     this.name = name;
