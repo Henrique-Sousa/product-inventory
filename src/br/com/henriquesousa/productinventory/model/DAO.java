@@ -1,0 +1,24 @@
+package br.com.henriquesousa.productinventory.model;
+
+import java.sql.*;
+import java.util.List;
+
+public abstract class DAO<T> {
+
+  protected final Connection connection;
+  
+  public DAO(Connection connection) {
+    super();
+    this.connection = connection;
+  }
+
+  //public abstract T findById(long id);
+  //public abstract List<T> findAll();
+  public abstract void save(T t) throws SQLException;
+  //public abstract void delete(long id);
+  //public abstract void update(T t);
+}
+
+  
+  
+
