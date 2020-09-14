@@ -14,19 +14,6 @@ public class Product {
     this.quantity = quantity;
   }
 
-  public void save() throws SQLException {
-    try {
-      Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost/productinventory", "productmanager", "123456");
-      Statement statement = connection.createStatement();
-      String query = "INSERT INTO products(name, description, price, quantity)" +
-                     "values('" + this.name + "', '" + this.description + "'," + this.price + "," + this.quantity + ");";
-      statement.executeUpdate(query);
-      connection.close();
-    } catch(SQLException e) { 
-      e.printStackTrace();
-    }
-  }
-
   public String getName() {
     return this.name;
   }
