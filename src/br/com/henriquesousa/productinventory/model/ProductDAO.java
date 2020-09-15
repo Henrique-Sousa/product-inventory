@@ -11,10 +11,13 @@ public class ProductDAO extends DAO<Product> {
   @Override
   public void save(Product product) throws SQLException {
     try {
-      Statement statement = this.connection.createStatement();
-      String query = "INSERT INTO products(name, description, price, quantity)" +
-                     "values('" + product.name + "', '" + product.description + "'," + product.price + "," + product.quantity + ");";
-      statement.executeUpdate(query);
+      String query = "INSERT INTO products (name, description, price, quantity) VALUES (?, ?, ?, ?)";
+      PreparedStatement statement = this.connection.prepareStatement(query);
+      statement.setString(1, product.getName());
+      statement.setString(2, product.getDescription());
+      statement.setDouble(3, product.getPrice());
+      statement.setLong(4, product.getQuantity());
+      statement.execute();
     } catch(SQLException e) { 
       e.printStackTrace();
     }
