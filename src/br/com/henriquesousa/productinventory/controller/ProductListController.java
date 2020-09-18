@@ -6,7 +6,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 
 @WebServlet("/products")
-public class ProductsController extends HttpServlet {
+public class ProductListController extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
