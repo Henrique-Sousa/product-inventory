@@ -8,12 +8,12 @@ import javax.servlet.annotation.WebServlet;
 @WebServlet("/products")
 public class ProductsController extends HttpServlet {
 
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-    throws ServletException, IOException {
-    
-    response.setContentType("text/html");
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+        
+        response.setContentType("text/html");
 
-    PrintWriter out = response.getWriter();
-    out.println("<h1> Product list placholder </h1>");
-  }
+        PrintWriter out = response.getWriter();
+        out.println("<h1> Product list placholder </h1>");
+    }
 }
