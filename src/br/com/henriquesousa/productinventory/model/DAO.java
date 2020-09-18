@@ -12,7 +12,7 @@ public abstract class DAO<T> {
     this.connection = connection;
   }
 
-  //public abstract T findById(long id);
+  public abstract T findById(long id) throws SQLException;
   //public abstract List<T> findAll();
   public abstract void save(T t) throws SQLException;
   //public abstract void delete(long id);

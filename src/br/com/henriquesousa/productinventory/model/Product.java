@@ -7,13 +7,6 @@ public class Product {
   private double price;
   private long quantity, id;
  
-  public Product(String name, String description, double price, long quantity) {
-    this.name = name;
-    this.description = description;
-    this.price = price;
-    this.quantity = quantity;
-  }
-
   public String getName() {
     return this.name;
   }

@@ -23,4 +23,23 @@ public class ProductDAO extends DAO<Product> {
     }
   }
 
+  @Override
+  public Product findById(long id) throws SQLException {
+    Product product = new Product();
+    try {
+      String query = "SELECT name, description, price, quantity FROM products WHERE product_id = ?";
+      PreparedStatement statement = this.connection.prepareStatement(query);
+      statement.setLong(1, id);
+      ResultSet result = statement.executeQuery();
+      result.next();
+      product.setName(result.getString("name"));
+      product.setDescription(result.getString("description"));
+      product.setPrice(result.getDouble("price"));
+      product.setQuantity(result.getLong("quantity"));
+    } catch(SQLException e) { 
+      e.printStackTrace();
+    }
+    return product;
+  }
+
 }
