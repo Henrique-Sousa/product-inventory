@@ -27,11 +27,12 @@ public class ProductDAO extends DAO<Product> {
     public Product findById(long id) throws SQLException {
         Product product = new Product();
         try {
-            String query = "SELECT name, description, price, quantity FROM products WHERE product_id = ?";
+            String query = "SELECT product_id, name, description, price, quantity FROM products WHERE product_id = ?";
             PreparedStatement statement = this.connection.prepareStatement(query);
             statement.setLong(1, id);
             ResultSet result = statement.executeQuery();
             result.next();
+            product.setId(result.getLong("product_id"));
             product.setName(result.getString("name"));
             product.setDescription(result.getString("description"));
             product.setPrice(result.getDouble("price"));
