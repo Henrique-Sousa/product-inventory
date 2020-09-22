@@ -19,7 +19,7 @@ public class ProductDAO extends DAO<Product> {
             statement.setLong(4, product.getQuantity());
             statement.execute();
         } catch(SQLException e) { 
-            e.printStackTrace();
+            throw e;
         }
     }
 
@@ -38,7 +38,7 @@ public class ProductDAO extends DAO<Product> {
             product.setPrice(result.getDouble("price"));
             product.setQuantity(result.getLong("quantity"));
         } catch(SQLException e) { 
-            e.printStackTrace();
+            throw e;
         }
         return product;
     }
