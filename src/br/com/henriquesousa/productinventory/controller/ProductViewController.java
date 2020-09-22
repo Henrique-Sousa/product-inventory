@@ -17,6 +17,7 @@ public class ProductViewController extends HttpServlet {
         PrintWriter out = response.getWriter();
 
         try {
+
             String sid = request.getParameter("id");
             Long id = Long.parseLong(sid);
 
@@ -26,16 +27,25 @@ public class ProductViewController extends HttpServlet {
             Product product = productDAO.findById(id); 
 
             connection.close();
-            
-            out.println("<h1>Product View</h1>");
-            out.println("<p>Name: " + product.getName() + "</p>");
-            out.println("<p>Description: " + product.getDescription() + "</p>");
-            out.println("<p>Price: " + product.getPrice() + "</p>");
-            out.println("<p>Quantity: " + product.getQuantity() + "</p>");
 
+            if (product == null) {
+                RequestDispatcher rd = request.getRequestDispatcher("/error.jsp");
+                rd.forward(request, response);
+            } else {
+                //out.println("<h1>Product View</h1>");
+                //out.println("<p>Id " + product.getId() + "</p>");
+                //out.println("<p>Name: " + product.getName() + "</p>");
+                //out.println("<p>Description: " + product.getDescription() + "</p>");
+                //out.println("<p>Price: " + product.getPrice() + "</p>");
+                //out.println("<p>Quantity: " + product.getQuantity() + "</p>");
+                RequestDispatcher rd = request.getRequestDispatcher("/product_view.jsp");
+                rd.forward(request, response);
+            }
 
         } catch(SQLException e) {
-            out.println(e);
+            //out.println(e);
+            RequestDispatcher rd = request.getRequestDispatcher("/error.jsp");
+            rd.forward(request, response);
         }
     }
 }
