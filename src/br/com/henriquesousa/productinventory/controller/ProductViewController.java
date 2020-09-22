@@ -29,11 +29,7 @@ public class ProductViewController extends HttpServlet {
                 RequestDispatcher rd = request.getRequestDispatcher("/error.jsp");
                 rd.forward(request, response);
             } else {
-                //product.getId();
-                //product.getName();
-                //product.getDescription();
-                //product.getPrice();
-                //product.getQuantity();
+                request.setAttribute("product", product);
                 RequestDispatcher rd = request.getRequestDispatcher("/product_view.jsp");
                 rd.forward(request, response);
             }
