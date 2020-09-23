@@ -26,10 +26,10 @@ public class ProductViewController extends HttpServlet {
 
             String sid = request.getParameter("id");
 
-            if (sid != null) {
-                id = Long.parseLong(sid);
-            } else {
+            if (sid == null) {
                 redirect("/error.jsp", request, response);
+            } else {
+                id = Long.parseLong(sid);
             }
 
             Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost/productinventory", "productmanager", "123456");
