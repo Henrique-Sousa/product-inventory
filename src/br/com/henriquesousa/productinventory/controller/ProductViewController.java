@@ -10,13 +10,6 @@ import br.com.henriquesousa.productinventory.model.*;
 @WebServlet("/product")
 public class ProductViewController extends HttpServlet {
 
-    public static void redirect(String path, HttpServletRequest request, HttpServletResponse response) 
-        throws ServletException, IOException {
-
-        RequestDispatcher rd = request.getRequestDispatcher(path);
-        rd.forward(request, response);
-    }
-
     public void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
         
@@ -50,4 +43,12 @@ public class ProductViewController extends HttpServlet {
             redirect("/error.jsp", request, response);
         }
     }
+
+    public static void redirect(String path, HttpServletRequest request, HttpServletResponse response) 
+        throws ServletException, IOException {
+
+        RequestDispatcher rd = request.getRequestDispatcher(path);
+        rd.forward(request, response);
+    }
+
 }
