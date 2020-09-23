@@ -26,7 +26,7 @@ public class ProductViewController extends HttpServlet {
 
             String sid = request.getParameter("id");
 
-            if (sid == null) {
+            if (sid == null || sid == "") {
                 redirect("/error.jsp", request, response);
             } else {
                 id = Long.parseLong(sid);
