@@ -15,8 +15,16 @@ public class ProductViewController extends HttpServlet {
         
         try {
 
+            long id = 0;
+
             String sid = request.getParameter("id");
-            long id = Long.parseLong(sid);
+
+            if (sid != null) {
+                id = Long.parseLong(sid);
+            } else {
+                RequestDispatcher rd = request.getRequestDispatcher("/error.jsp");
+                rd.forward(request, response);
+            }
 
             Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost/productinventory", "productmanager", "123456");
             ProductDAO productDAO = new ProductDAO(connection);
