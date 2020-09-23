@@ -10,6 +10,13 @@ import br.com.henriquesousa.productinventory.model.*;
 @WebServlet("/product")
 public class ProductViewController extends HttpServlet {
 
+    public static void redirect(String path, HttpServletRequest request, HttpServletResponse response) 
+        throws ServletException, IOException {
+
+        RequestDispatcher rd = request.getRequestDispatcher(path);
+        rd.forward(request, response);
+    }
+
     public void doGet(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
         
@@ -22,8 +29,7 @@ public class ProductViewController extends HttpServlet {
             if (sid != null) {
                 id = Long.parseLong(sid);
             } else {
-                RequestDispatcher rd = request.getRequestDispatcher("/error.jsp");
-                rd.forward(request, response);
+                redirect("/error.jsp", request, response);
             }
 
             Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost/productinventory", "productmanager", "123456");
@@ -34,17 +40,14 @@ public class ProductViewController extends HttpServlet {
             connection.close();
 
             if (product == null) {
-                RequestDispatcher rd = request.getRequestDispatcher("/error.jsp");
-                rd.forward(request, response);
+                redirect("/error.jsp", request, response);
             } else {
                 request.setAttribute("product", product);
-                RequestDispatcher rd = request.getRequestDispatcher("/product_view.jsp");
-                rd.forward(request, response);
+                redirect("/product_view.jsp", request, response);
             }
 
         } catch(SQLException e) {
-            RequestDispatcher rd = request.getRequestDispatcher("/error.jsp");
-            rd.forward(request, response);
+            redirect("/error.jsp", request, response);
         }
     }
 }
