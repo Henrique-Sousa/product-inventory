@@ -20,7 +20,7 @@ public class ProductViewController extends HttpServlet {
             String sid = request.getParameter("id");
 
             if (sid == null || sid == "") {
-                redirect("/error.jsp", request, response);
+                forward("/error.jsp", request, response);
             } else {
                 id = Long.parseLong(sid);
             }
@@ -33,18 +33,18 @@ public class ProductViewController extends HttpServlet {
             connection.close();
 
             if (product == null) {
-                redirect("/error.jsp", request, response);
+                forward("/error.jsp", request, response);
             } else {
                 request.setAttribute("product", product);
-                redirect("/product_view.jsp", request, response);
+                forward("/product_view.jsp", request, response);
             }
 
         } catch(SQLException e) {
-            redirect("/error.jsp", request, response);
+            forward("/error.jsp", request, response);
         }
     }
 
-    public static void redirect(String path, HttpServletRequest request, HttpServletResponse response) 
+    public static void forward(String path, HttpServletRequest request, HttpServletResponse response) 
         throws ServletException, IOException {
 
         RequestDispatcher rd = request.getRequestDispatcher(path);
