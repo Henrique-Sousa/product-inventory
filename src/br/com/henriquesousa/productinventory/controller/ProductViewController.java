@@ -16,11 +16,12 @@ public class ProductViewController extends HttpServlet {
         try {
 
             String sid;
-            long id = 0;
+            long id;
 
             if ((sid = request.getParameter("id")) == null || sid == "") {
                 request.setAttribute("error", "No id found in the query string");
                 forward("/error.jsp", request, response);
+                return;
             } else {
                 id = Long.parseLong(sid);
             }
