@@ -20,6 +20,7 @@ public class ProductViewController extends HttpServlet {
             String sid = request.getParameter("id");
 
             if (sid == null || sid == "") {
+                request.setAttribute("error", "No id found in the query string");
                 forward("/error.jsp", request, response);
             } else {
                 id = Long.parseLong(sid);
@@ -33,6 +34,7 @@ public class ProductViewController extends HttpServlet {
             connection.close();
 
             if (product == null) {
+                request.setAttribute("error", "Product id not found on database");
                 forward("/error.jsp", request, response);
             } else {
                 request.setAttribute("product", product);
@@ -40,6 +42,7 @@ public class ProductViewController extends HttpServlet {
             }
 
         } catch(SQLException e) {
+            request.setAttribute("error", "Internal error");
             forward("/error.jsp", request, response);
         }
     }
