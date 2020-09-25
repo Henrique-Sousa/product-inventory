@@ -13,7 +13,7 @@ public abstract class DAO<T> {
     }
 
     public abstract T findById(long id) throws SQLException;
-    //public abstract List<T> findAll();
+    public abstract List<T> findAll() throws SQLException;
     public abstract void save(T t) throws SQLException;
     //public abstract void delete(long id);
     //public abstract void update(T t);

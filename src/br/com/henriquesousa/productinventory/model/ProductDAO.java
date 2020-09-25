@@ -1,6 +1,7 @@
 package br.com.henriquesousa.productinventory.model;
 
 import java.sql.*;
+import java.util.*;
 
 public class ProductDAO extends DAO<Product> {
 
@@ -36,6 +37,24 @@ public class ProductDAO extends DAO<Product> {
             product.setQuantity(result.getLong("quantity"));
             return product;
         }
+    }
+
+    @Override
+    public List<Product> findAll() throws SQLException {
+        List<Product> lp = new ArrayList<>();
+        String query = "SELECT product_id, name, description, price, quantity FROM products";
+        PreparedStatement statement = this.connection.prepareStatement(query);
+        ResultSet result = statement.executeQuery();
+        while (result.next()) {
+            Product product = new Product();
+            product.setId(result.getLong("product_id"));
+            product.setName(result.getString("name"));
+            product.setDescription(result.getString("description"));
+            product.setPrice(result.getDouble("price"));
+            product.setQuantity(result.getLong("quantity"));
+            lp.add(product);
+        }
+        return lp;
     }
 
 }
