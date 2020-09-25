@@ -6,6 +6,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 import java.sql.*;
 import br.com.henriquesousa.productinventory.model.*;
+import br.com.henriquesousa.productinventory.util.*;
 
 @WebServlet("/product")
 public class ProductViewController extends HttpServlet {
@@ -18,9 +19,9 @@ public class ProductViewController extends HttpServlet {
             String sid;
             long id;
 
-            if ((sid = request.getParameter("id")) == null || sid == "") {
+            if ((sid = request.getParameter("id")) == null || sid == "" ) {
                 request.setAttribute("error", "No id found in the query string");
-                forward("/error.jsp", request, response);
+                Utils.forward("/error.jsp", request, response);
                 return;
             } else {
                 id = Long.parseLong(sid);
@@ -35,23 +36,16 @@ public class ProductViewController extends HttpServlet {
 
             if (product == null) {
                 request.setAttribute("error", "Product id not found on database");
-                forward("/error.jsp", request, response);
+                Utils.forward("/error.jsp", request, response);
             } else {
                 request.setAttribute("product", product);
-                forward("/product_view.jsp", request, response);
+                Utils.forward("/product_view.jsp", request, response);
             }
 
         } catch(SQLException e) {
             request.setAttribute("error", "Internal error");
-            forward("/error.jsp", request, response);
+            Utils.forward("/error.jsp", request, response);
         }
-    }
-
-    public static void forward(String path, HttpServletRequest request, HttpServletResponse response) 
-        throws ServletException, IOException {
-
-        RequestDispatcher rd = request.getRequestDispatcher(path);
-        rd.forward(request, response);
     }
 
 }
