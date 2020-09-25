@@ -42,10 +42,14 @@ public class ProductViewController extends HttpServlet {
                 Utils.forward("/product_view.jsp", request, response);
             }
 
+        } catch(NumberFormatException e) {
+            request.setAttribute("error", "Id must be an integer");
+            Utils.forward("/error.jsp", request, response);
         } catch(SQLException e) {
             request.setAttribute("error", "Internal error");
             Utils.forward("/error.jsp", request, response);
         }
+
     }
 
 }
