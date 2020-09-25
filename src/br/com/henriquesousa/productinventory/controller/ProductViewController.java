@@ -19,7 +19,7 @@ public class ProductViewController extends HttpServlet {
             String sid;
             long id;
 
-            if ((sid = request.getParameter("id")) == null || sid == "" ) {
+            if ((sid = request.getParameter("id")) == null) {
                 request.setAttribute("error", "No id found in the query string");
                 Utils.forward("/error.jsp", request, response);
                 return;
