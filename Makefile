@@ -6,7 +6,7 @@ ROOT_PACKAGE = ./src
 
 JSP = error.jsp product_list.jsp product_view.jsp product_create.jsp
 MODELS = DAO.java ProductDAO.java Product.java
-CONTROLLERS = ProductListController.java ProductViewController.java
+CONTROLLERS = ProductListController.java ProductViewController.java ProductCreateController.java
 UTILS = Utils.java
 
 build: cleansite $(UTILS) $(MODELS) $(CONTROLLERS) $(JSP)
