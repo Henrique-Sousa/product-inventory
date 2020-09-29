@@ -16,4 +16,8 @@ public class ProductCreateController extends HttpServlet {
         Utils.forward("/product_create.jsp", request, response);
     }
 
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+        throws ServletException, IOException {
+        this.doGet(request, response);
+    }
 }

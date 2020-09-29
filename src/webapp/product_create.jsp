@@ -18,7 +18,7 @@
     </head>
     <body>
         <h2>New Product</h2>
-        <form action="ProductCreate" method="POST">
+        <form action="" method="POST">
             <div>
                 <label for="id">id</label>
                 <input type="text" name="id" id="id">
