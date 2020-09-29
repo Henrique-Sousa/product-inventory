@@ -1,8 +1,8 @@
-TARGET_FOLDER=~/programs/tomcat/webapps/productinventory
-TARGET_CLASSES=$(TARGET_FOLDER)/WEB-INF/classes
-SRC_FOLDER=./src/br/com/henriquesousa/productinventory
-SERVLET_API=~/programs/tomcat/lib/servlet-api.jar
-ROOT_PACKAGE=./src
+TARGET_FOLDER = ~/programs/tomcat/webapps/productinventory
+TARGET_CLASSES = $(TARGET_FOLDER)/WEB-INF/classes
+SRC_FOLDER = ./src/br/com/henriquesousa/productinventory
+SERVLET_API = ~/programs/tomcat/lib/servlet-api.jar
+ROOT_PACKAGE = ./src
 
 build: cleansite util models controllers jsp
 
