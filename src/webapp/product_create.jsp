@@ -39,6 +39,9 @@
                 <label for="quantity">quantity</label>
                 <input type="text" name="quantity" id="quantity">
             </div>
+            <div>
+                <input type="submit" value="Create">
+            </div>
         </form>
     </body>
 </html>
