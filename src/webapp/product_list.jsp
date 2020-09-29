@@ -4,14 +4,14 @@
 <html>
     <head>
         <title>Product List</title>
-            <style>
-                table,
-                td ,
-                thead,
-                th {
-                    border: 1px solid black;
-                }
-            </style>
+        <style>
+            table,
+            td ,
+            thead,
+            th {
+                border: 1px solid black;
+            }
+        </style>
     </head>
     <body>
         <h2>Products</h2>
