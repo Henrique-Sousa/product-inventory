@@ -4,58 +4,39 @@ SRC_FOLDER = ./src/br/com/henriquesousa/productinventory
 SERVLET_API = ~/programs/tomcat/lib/servlet-api.jar
 ROOT_PACKAGE = ./src
 
-build: cleansite util models controllers jsp
+JSP = error.jsp product_list.jsp product_view.jsp product_create.jsp
+MODELS = DAO.java ProductDAO.java Product.java
+CONTROLLERS = ProductListController.java ProductViewController.java
+UTILS = Utils.java
+
+build: cleansite $(UTILS) $(MODELS) $(CONTROLLERS) $(JSP)
 
 cleansite: cleanclasses cleanjsp
 
 cleanclasses:
 	rm -rf $(TARGET_CLASSES)/br
-	@echo all classes deleted
+	@echo "\e[1;33mall classes deleted \e[0m"
 
 cleanjsp:
-	rm ~/programs/tomcat/webapps/productinventory/*.jsp
-	@echo all jsp deleted
+	if [ $(TARGET_FOLDER)/"*.jsp" ]; then rm -f $(TARGET_FOLDER)/*.jsp; fi
+	@echo "\e[1;33mall jsp deleted \e[0m"
 
 localclean:
 	find . -name "*.class" -exec rm {} \;
 	
+$(MODELS): %.java:
+	javac -cp $(SERVLET_API):$(ROOT_PACKAGE) $(SRC_FOLDER)/model/$*.java -d $(TARGET_CLASSES)
+	@echo "\e[1;32mmodel/$*.java built successfully \e[0m"
 
-models: dao productdao product
+$(CONTROLLERS): %.java:
+	javac -cp $(SERVLET_API):$(ROOT_PACKAGE) $(SRC_FOLDER)/controller/$*.java -d $(TARGET_CLASSES)
+	@echo "\e[1;32mcontroller/$*.java built successfully \e[0m"
 
-controllers: productlist productview
+$(UTILS): %.java:
+	javac -cp $(SERVLET_API):$(ROOT_PACKAGE) $(SRC_FOLDER)/util/$*.java -d $(TARGET_CLASSES)
+	@echo "\e[1;32mutil/$*.java built successfully \e[0m"
 
-util:
-	javac -cp $(SERVLET_API):$(ROOT_PACKAGE) $(SRC_FOLDER)/controller/ProductListController.java -d $(TARGET_CLASSES)
-	@echo "\e[1;32mmodel/ProductListController.java built successfully \e[0m"
-
-productlist:
-	javac -cp $(SERVLET_API):$(ROOT_PACKAGE) $(SRC_FOLDER)/controller/ProductListController.java -d $(TARGET_CLASSES)
-	@echo "\e[1;32mmodel/ProductListController.java built successfully \e[0m"
-
-productview:
-	javac -cp $(SERVLET_API):$(ROOT_PACKAGE) $(SRC_FOLDER)/controller/ProductViewController.java -d $(TARGET_CLASSES)
-	@echo "\e[1;32mmodel/ProductViewController.java built successfully \e[0m"
-
-dao:
-	javac -cp $(SERVLET_API):$(ROOT_PACKAGE) $(SRC_FOLDER)/model/DAO.java -d $(TARGET_CLASSES)
-	@echo "\e[1;32mmodel/DAO.java built successfully \e[0m"
-
-productdao:
-	javac -cp $(SERVLET_API):$(ROOT_PACKAGE) $(SRC_FOLDER)/model/ProductDAO.java -d $(TARGET_CLASSES)
-	@echo "\e[1;32mmodel/ProductDAO.java built successfully \e[0m"
-
-product:
-	javac -cp $(SERVLET_API):$(ROOT_PACKAGE) $(SRC_FOLDER)/model/Product.java -d $(TARGET_CLASSES)
-	@echo "\e[1;32mmodel/Product.java built successfully \e[0m"
-	
-jsp: error product_list product_view
-
-product_view:
-	cp src/webapp/product_view.jsp $(TARGET_FOLDER)
-
-product_list:
-	cp src/webapp/product_list.jsp $(TARGET_FOLDER) 
-
-error:
-	cp src/webapp/error.jsp $(TARGET_FOLDER)
+$(JSP): %.jsp:
+	cp src/webapp/$*.jsp $(TARGET_FOLDER)
+	@echo "\e[1;32m$*.jsp built successfully \e[0m"
 
