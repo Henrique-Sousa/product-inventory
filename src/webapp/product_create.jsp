@@ -17,6 +17,7 @@
         </style>
     </head>
     <body>
+        <a href="/productinventory/products">Home</a>
         <h2>New Product</h2>
         <form action="" method="POST">
             <div>

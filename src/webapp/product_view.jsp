@@ -5,6 +5,7 @@
         <title>Product View</title>
     </head>
     <body>
+        <a href="/productinventory/products">Home</a>
         <h2>Product details</h2>
         <div>
             <p>Id: ${product.id}</p>
