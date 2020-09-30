@@ -63,5 +63,23 @@ public class ProductCreateController extends HttpServlet {
             return;
         }
 
+        try {
+
+            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost/productinventory", "productmanager", "123456");
+            ProductDAO productDAO = new ProductDAO(connection); 
+
+            Product product = new Product();
+            product.setName(name);
+            product.setDescription(description);
+            product.setPrice(price);
+            product.setQuantity(quantity);
+            productDAO.save(product);
+
+            connection.close();
+        
+        } catch(SQLException e) {
+            out.println(e);
+        }
+
     }
 }
