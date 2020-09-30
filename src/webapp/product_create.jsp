@@ -20,10 +20,6 @@
         <h2>New Product</h2>
         <form action="" method="POST">
             <div>
-                <label for="id">id</label>
-                <input type="number" name="id" id="id" min="0">
-            </div>
-            <div>
                 <label for="name">name</label>
                 <input type="text" name="name" id="name">
             </div>

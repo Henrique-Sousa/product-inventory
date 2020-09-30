@@ -27,15 +27,6 @@ public class ProductCreateController extends HttpServlet {
         PrintWriter out = response.getWriter();
         response.setContentType("text/html");
         
-        try {
-            id = Long.parseLong(request.getParameter("id"));
-            out.println(id);
-        } catch(NumberFormatException e) {
-            request.setAttribute("error", "Missing: id");
-            Utils.forward("/error.jsp", request, response);
-            return;
-        }
-
         name = request.getParameter("name"); 
         if (name != "") {
             out.println(name);
