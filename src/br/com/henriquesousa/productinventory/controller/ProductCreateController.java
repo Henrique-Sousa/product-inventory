@@ -23,23 +23,16 @@ public class ProductCreateController extends HttpServlet {
         String name, description;
         double price;
         long id, quantity;
-
-        PrintWriter out = response.getWriter();
-        response.setContentType("text/html");
         
         name = request.getParameter("name"); 
-        if (name != "") {
-            out.println(name);
-        } else {
+        if (name == "") {
             request.setAttribute("error", "Missing: name");
             Utils.forward("/error.jsp", request, response);
             return;
         }
 
         description = request.getParameter("description"); 
-        if (description != "") {
-            out.println(description);
-        } else {
+        if (description == "") {
             request.setAttribute("error", "Missing: description");
             Utils.forward("/error.jsp", request, response);
             return;
@@ -47,7 +40,6 @@ public class ProductCreateController extends HttpServlet {
 
         try {
             price = Double.parseDouble(request.getParameter("price"));
-            out.println(price);
         } catch(NumberFormatException e) {
             request.setAttribute("error", "Missing: price");
             Utils.forward("/error.jsp", request, response);
@@ -56,7 +48,6 @@ public class ProductCreateController extends HttpServlet {
 
         try {
             quantity = Long.parseLong(request.getParameter("quantity"));
-            out.println(quantity);
         } catch(NumberFormatException e) {
             request.setAttribute("error", "Missing: quantity");
             Utils.forward("/error.jsp", request, response);
@@ -78,7 +69,8 @@ public class ProductCreateController extends HttpServlet {
             connection.close();
         
         } catch(SQLException e) {
-            out.println(e);
+            request.setAttribute("error", "Internal error");
+            Utils.forward("/error.jsp", request, response);
         }
 
     }
