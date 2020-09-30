@@ -67,6 +67,8 @@ public class ProductCreateController extends HttpServlet {
             productDAO.save(product);
 
             connection.close();
+
+            response.sendRedirect(request.getContextPath() + "/products");
         
         } catch(SQLException e) {
             request.setAttribute("error", "Internal error");
