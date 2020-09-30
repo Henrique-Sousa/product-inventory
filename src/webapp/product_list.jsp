@@ -37,7 +37,7 @@
                 </c:forEach>
                 </tbody>
             </table>
-
         </div>
+        <a href="product/create">Add new product</a>
     </body>
 </html>
