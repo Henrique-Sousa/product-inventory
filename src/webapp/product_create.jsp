@@ -21,7 +21,7 @@
         <form action="" method="POST">
             <div>
                 <label for="id">id</label>
-                <input type="text" name="id" id="id">
+                <input type="number" name="id" id="id" min="0">
             </div>
             <div>
                 <label for="name">name</label>
@@ -33,11 +33,11 @@
             </div>
             <div>
                 <label for="price">price</label>
-                <input type="text" name="price" id="price">
+                <input type="number" name="price" id="price" min="0">
             </div>
             <div>
                 <label for="quantity">quantity</label>
-                <input type="text" name="quantity" id="quantity">
+                <input type="number" name="quantity" id="quantity" min="0">
             </div>
             <div>
                 <input type="submit" value="Create">
