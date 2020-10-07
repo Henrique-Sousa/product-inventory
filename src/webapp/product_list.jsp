@@ -33,6 +33,7 @@
                         <td><a href="./product?id=${product.id}">${product.description}</a></td>
                         <td><a href="./product?id=${product.id}">${product.price}</a></td>
                         <td><a href="./product?id=${product.id}">${product.quantity}</a></td>
+                        <td><a href="./product/delete?id=${product.id}">Delete</a></td>
                     </tr>
                 </c:forEach>
                 </tbody>
