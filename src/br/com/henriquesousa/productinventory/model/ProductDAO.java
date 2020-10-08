@@ -57,4 +57,11 @@ public class ProductDAO extends DAO<Product> {
         return lp;
     }
 
+    @Override
+    public void delete(long id) throws SQLException {
+        String query = "DELETE FROM products WHERE product_id = ?";
+        PreparedStatement statement = this.connection.prepareStatement(query);
+        statement.setLong(1, id);
+        statement.execute();
+    }
 }
