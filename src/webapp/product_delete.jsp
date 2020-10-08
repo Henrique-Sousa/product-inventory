@@ -14,7 +14,7 @@
             <p>Price: ${product.price}</p>
             <p>Quantity: ${product.quantity}</p>
         </div>
-        <form action="" method="POST">
+        <form action="/productinventory/product/delete?id=${product.id}" method="POST">
             <div>
                 <input type="submit" value="Yes, delete it!">
             </div>
