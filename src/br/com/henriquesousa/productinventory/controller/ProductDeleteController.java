@@ -53,7 +53,36 @@ public class ProductDeleteController extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
-        this.doGet(request, response);
-    }
 
+        try {
+
+            String sid;
+            long id;
+
+            if ((sid = request.getParameter("id")) == null) {
+                request.setAttribute("error", "No id found in the query string");
+                Utils.forward("/error.jsp", request, response);
+                return;
+            } else {
+                id = Long.parseLong(sid);
+            }
+
+            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost/productinventory", "productmanager", "123456");
+            ProductDAO productDAO = new ProductDAO(connection);
+
+            productDAO.delete(id);
+
+            connection.close();
+            
+            response.sendRedirect(request.getContextPath() + "/products");
+
+        } catch(NumberFormatException e) {
+            request.setAttribute("error", "Id must be an integer");
+            Utils.forward("/error.jsp", request, response);
+        } catch(SQLException e) {
+            request.setAttribute("error", "Internal error");
+            Utils.forward("/error.jsp", request, response);
+        }
+            
+    }
 }
