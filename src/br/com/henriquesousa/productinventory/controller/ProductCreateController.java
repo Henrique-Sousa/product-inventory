@@ -22,7 +22,7 @@ public class ProductCreateController extends HttpServlet {
 
         String name, description;
         double price;
-        long id, quantity;
+        long quantity;
         
         name = request.getParameter("name"); 
         if (name == "") {
