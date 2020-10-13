@@ -16,9 +16,6 @@ public abstract class DAO<T> {
     public abstract List<T> findAll() throws SQLException;
     public abstract void save(T t) throws SQLException;
     public abstract void delete(long id) throws SQLException;
-    //public abstract void update(T t);
+    public abstract void update(long id, T t) throws SQLException;
 }
-
-    
-    
 

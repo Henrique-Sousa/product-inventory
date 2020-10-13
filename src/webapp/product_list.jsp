@@ -34,6 +34,7 @@
                         <td><a href="./product?id=${product.id}">${product.price}</a></td>
                         <td><a href="./product?id=${product.id}">${product.quantity}</a></td>
                         <td><a href="./product/delete?id=${product.id}">Delete</a></td>
+                        <td><a href="./product/update?id=${product.id}">Modify</a></td>
                     </tr>
                 </c:forEach>
                 </tbody>

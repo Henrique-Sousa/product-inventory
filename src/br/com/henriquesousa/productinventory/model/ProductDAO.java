@@ -64,4 +64,14 @@ public class ProductDAO extends DAO<Product> {
         statement.setLong(1, id);
         statement.execute();
     }
+
+    @Override
+    public void update(long id, Product product) throws SQLException {
+        String query = "UPDATE products SET name = ?, description = ?, price = ?, quantity = ? WHERE product_id = ?";
+        PreparedStatement statement = this.connection.prepareStatement(query);
+        statement.setString(1, product.getName());
+        statement.setString(2, product.getDescription());
+        statement.setDouble(3, product.getPrice());
+        statement.setLong(4, product.getQuantity());
+    }
 }

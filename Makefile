@@ -4,9 +4,9 @@ SRC_FOLDER = ./src/br/com/henriquesousa/productinventory
 SERVLET_API = ~/programs/tomcat/lib/servlet-api.jar
 ROOT_PACKAGE = ./src
 
-JSP = error.jsp product_list.jsp product_view.jsp product_create.jsp product_delete.jsp
+JSP = error.jsp product_list.jsp product_view.jsp product_create.jsp product_delete.jsp product_update.jsp
 MODELS = DAO.java ProductDAO.java Product.java
-CONTROLLERS = ProductListController.java ProductViewController.java ProductCreateController.java ProductDeleteController.java
+CONTROLLERS = ProductListController.java ProductViewController.java ProductCreateController.java ProductDeleteController.java ProductUpdateController.java
 UTILS = Utils.java
 
 build: cleansite $(UTILS) $(MODELS) $(CONTROLLERS) $(JSP)
