@@ -73,5 +73,6 @@ public class ProductDAO extends DAO<Product> {
         statement.setString(2, product.getDescription());
         statement.setDouble(3, product.getPrice());
         statement.setLong(4, product.getQuantity());
+        statement.execute();
     }
 }

@@ -55,7 +55,82 @@ public class ProductUpdateController extends HttpServlet {
 
         throws ServletException, IOException {
 
-        this.doGet(request, response);
+        String sid, name, description;
+        double price;
+        long id, quantity;
+
+        if ((sid = request.getParameter("id")) == null) {
+            request.setAttribute("error", "No id found in the query string");
+            Utils.forward("/error.jsp", request, response);
+            return;
+        } else {
+            id = Long.parseLong(sid);
+        }
+        
+        name = request.getParameter("name"); 
+        if (name == "") {
+            request.setAttribute("error", "Missing: name");
+            Utils.forward("/error.jsp", request, response);
+            return;
+        }
+
+        description = request.getParameter("description"); 
+        if (description == "") {
+            request.setAttribute("error", "Missing: description");
+            Utils.forward("/error.jsp", request, response);
+            return;
+        }
+
+        try {
+            price = Double.parseDouble(request.getParameter("price"));
+        } catch(NumberFormatException e) {
+            request.setAttribute("error", "Missing: price");
+            Utils.forward("/error.jsp", request, response);
+            return;
+        }
+
+        try {
+            quantity = Long.parseLong(request.getParameter("quantity"));
+        } catch(NumberFormatException e) {
+            request.setAttribute("error", "Missing: quantity");
+            Utils.forward("/error.jsp", request, response);
+            return;
+        }
+
+        try {
+
+            Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost/productinventory", "productmanager", "123456");
+            ProductDAO productDAO = new ProductDAO(connection); 
+
+            Product product = new Product();
+            product.setName(name);
+            product.setDescription(description);
+            product.setPrice(price);
+            product.setQuantity(quantity);
+            product.setId(id);
+
+            //response.setContentType("text/html");
+            //PrintWriter w = response.getWriter();
+            //w.println(product.getName());
+            //w.println(product.getDescription());
+            //w.println(product.getId());
+
+            productDAO.update(id, product);
+
+            connection.close();
+
+            response.sendRedirect(request.getContextPath() + "/products");
+        
+        } catch(SQLException e) {
+            request.setAttribute("error", "Internal error");
+            Utils.forward("/error.jsp", request, response);
+        }
     }
+
+
+    public static void main(String args[]) {
+        System.out.println("main working");
+    }
+         
 
 }
